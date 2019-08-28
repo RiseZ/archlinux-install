@@ -1,0 +1,92 @@
+## Pure arch linux installation guide  
+
+# ping -c 4 google.com
+# timedatectl set-ntp true
+# timedatectl status
+# cfdisk (manage disk partitions)
+# mkfs.ext4 /dev/sda1
+# mkswap /dev/sda2 
+# swapon /dev/sda2
+# mount /dev/sda1 /mnt
+# pacstrap /mnt base
+# arch-chroot /mnt
+# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+# hwclock --systohc
+
+# nano /etc/locale.gen
+    (uncomment en_US.UTF-8 UTF8)
+
+# locale-gen
+
+# nano /etc/locale.conf
+LANG=en_US.UTF-8
+
+# nano /etc/hostname
+myhostname  (rise was what I used)
+
+# nano /etc/hosts
+127.0.0.1 localhost
+::1          localhost
+127.0.1.1 myhostname.localdomain myhostname
+
+# passwd
+# useradd -m newusername (I used derek)
+# passwd yourusername
+# usermod -aG wheel,audio,video,optical,storage yourusername
+# pacman -S sudo
+# pacman -S vim
+# visudo (uncomment %wheel All=(All)All
+                    :qw)
+# pacman -S ntfs-3g
+# pacman -S grub
+# grub-install /dev/sda
+# grub-mkconfig -o /boot/grub/grub.cfg
+# pacman -S os-prober
+# os-prober
+# grub-mkconfig -o /boot/grub/grub.cfg
+# pacman -S xorg 
+# exit
+# reboot
+
+
+
+## Next session
+
+# login
+# sudo systemctl enable dhcpcd.service
+# sudo systemctl start dhcpcd.service
+# pacman -Syu   (or ping google.com to test the internet connection)
+# echo "exec startkde" > ~/.xinitrc
+# sudo pacman -S plasma-meta
+# sudo pacman -S sddm
+# sudo systemctl enable sddm.service
+# sudo pacman -S konsole dolphine
+# sudo pacman -S nvidia nvidia-utils
+# sudo pacman -S git
+# mkdir Download
+# cd Download
+# git clone https://aur.archlinux.org/yay.git 
+# cd yay
+# sudo pacman -S base-devel
+# makepkg -si
+# sudo pacman -S htop
+# sudo pacman -S networkmanager
+# sudo systemctl disable dhcpcd.service
+# sudo systemctl enable networkmanager
+# sudo pacman -S ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent
+# reboot
+
+## ZSH install guide (for more info take a look at this article https://medium.com/@alex285/get-powerlevel9k-the-most-cool-linux-shell-ever-1c38516b0caa)
+
+# sudo pacman -S wget
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# change to zsh in konsole
+
+## and now install powerlevel9k
+# sudo pacman -S zsh-theme-powerlevel9k
+# echo 'source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
+# git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+
+You then need to select this theme in your ~/.zshrc:
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
