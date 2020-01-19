@@ -8,7 +8,8 @@
 # mkswap /dev/sda2 
 # swapon /dev/sda2
 # mount /dev/sda1 /mnt
-# pacstrap /mnt base
+# pacstrap /mnt base linux linux-firmware
+# genfstab -U /mnt >> /mnt/etc/fstab
 # arch-chroot /mnt
 # ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
 # hwclock --systohc
@@ -30,13 +31,13 @@ myhostname  (rise was what I used)
 127.0.1.1 myhostname.localdomain myhostname
 
 # passwd
-# useradd -m newusername (I used derek)
+# useradd -m newusername (I used rise)
 # passwd yourusername
 # usermod -aG wheel,audio,video,optical,storage yourusername
 # pacman -S sudo
 # pacman -S vim
-# visudo (uncomment %wheel All=(All)All
-                    :qw)
+# visudo (uncomment %wheel All=(All) All
+                    :wq)
 # pacman -S ntfs-3g
 # pacman -S grub
 # grub-install /dev/sda
