@@ -60,6 +60,14 @@ myhostname  (rise was what I used)
 # echo "exec startkde" > ~/.xinitrc
 # sudo pacman -S plasma-meta
 # sudo pacman -S sddm
+/*
+   SDDM
+   In the file /etc/sddm.conf, under the [General] section, set Numlock value to on :
+
+   [General]
+   ...
+   Numlock=on
+*/
 # sudo systemctl enable sddm.service
 # sudo pacman -S konsole dolphine
 # sudo nano /etc/pacman.conf (uncomment #multilib and its dependencies)
