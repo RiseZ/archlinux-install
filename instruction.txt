@@ -54,8 +54,8 @@ myhostname  (rise was what I used)
 ## Next session
 
 # login
-# sudo systemctl enable dhcpcd.service
-# sudo systemctl start dhcpcd.service
+# sudo systemctl enable networkmanager
+# sudo systemctl start networkmanager
 # pacman -Syu   (or ping google.com to test the internet connection)
 # echo "exec startkde" > ~/.xinitrc
 # sudo pacman -S plasma-meta
@@ -80,9 +80,6 @@ myhostname  (rise was what I used)
 # sudo pacman -S base-devel
 # makepkg -si
 # sudo pacman -S htop
-# sudo pacman -S networkmanager
-# sudo systemctl disable dhcpcd.service
-# sudo systemctl enable networkmanager
 # sudo pacman -S ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent
 # reboot
 
