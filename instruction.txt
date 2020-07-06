@@ -45,7 +45,7 @@ myhostname  (rise was what I used)
 # pacman -S os-prober
 # os-prober
 # grub-mkconfig -o /boot/grub/grub.cfg
-# pacman -S xorg 
+# pacman -S xorg networkmanager
 # exit
 # reboot
 
