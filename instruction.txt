@@ -57,7 +57,6 @@ myhostname  (rise was what I used)
 # sudo systemctl enable networkmanager
 # sudo systemctl start networkmanager
 # pacman -Syu   (or ping google.com to test the internet connection)
-# echo "exec startkde" > ~/.xinitrc
 # sudo pacman -S plasma-meta
 # sudo pacman -S sddm
 /*
@@ -71,7 +70,7 @@ myhostname  (rise was what I used)
 # sudo systemctl enable sddm.service
 # sudo pacman -S konsole dolphine
 # sudo nano /etc/pacman.conf (uncomment #multilib and its dependencies)
-# sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils
+# sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
 # sudo pacman -S git
 # mkdir Download
 # cd Download
@@ -83,7 +82,7 @@ myhostname  (rise was what I used)
 # sudo pacman -S ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent
 # reboot
 
-## ZSH install guide (for more info take a look at this article https://medium.com/@alex285/get-powerlevel9k-the-most-cool-linux-shell-ever-1c38516b0caa)
+## ZSH install guide (for more info take a look at this article https://github.com/romkatv/powerlevel10k#manual)
 
 # sudo pacman -S wget
 # sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
