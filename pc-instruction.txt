@@ -1,4 +1,4 @@
-## Pure arch linux installation guide  
+## Pure arch linux installation guide for my pc 
 
 # ping -c 4 google.com
 # timedatectl set-ntp true
@@ -8,7 +8,7 @@
 # mkswap /dev/sda2 
 # swapon /dev/sda2
 # mount /dev/sda1 /mnt
-# pacstrap /mnt base linux linux-firmware
+# pacstrap /mnt base linux linux-firmware nano
 # genfstab -U /mnt >> /mnt/etc/fstab
 # arch-chroot /mnt
 # ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
@@ -57,8 +57,11 @@ myhostname  (rise was what I used)
 # sudo systemctl enable networkmanager
 # sudo systemctl start networkmanager
 # pacman -Syu   (or ping google.com to test the internet connection)
-# sudo pacman -S plasma-meta
-# sudo pacman -S sddm
+# sudo pacman -S plasma-meta sddm konsole dolphin firefox ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent htop
+# mkdir /etc/sddm.conf.d
+# cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/
+# nano /etc/sddm.conf.d/default.conf
+
 /*
    SDDM
    In the file /etc/sddm.conf, under the [General] section, set Numlock value to on :
@@ -67,32 +70,30 @@ myhostname  (rise was what I used)
    ...
    Numlock=on
 */
+
 # sudo systemctl enable sddm.service
-# sudo pacman -S konsole dolphin firefox
 # sudo nano /etc/pacman.conf (uncomment #multilib and its dependencies)
 # sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
-# sudo pacman -S git
+# sudo pacman -S git wget
 # mkdir Download
 # cd Download
 # git clone https://aur.archlinux.org/yay.git 
 # cd yay
 # sudo pacman -S base-devel
 # makepkg -si
-# sudo pacman -S htop
-# sudo pacman -S ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent
 # reboot
 
 ## ZSH install guide (for more info take a look at this article https://github.com/romkatv/powerlevel10k#manual)
 
-# sudo pacman -S wget
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# sudo pacman -S zsh
+# sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# chsh -l
+# chsh -s /bin/zsh
 # change to zsh in konsole
+# sudo pacman -S ttf-nerd-fonts-symbols
 
-## and now install powerlevel9k
-# sudo pacman -S zsh-theme-powerlevel9k
-# echo 'source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme' >> ~/.zshrc
-# git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-
-You then need to select this theme in your ~/.zshrc:
-
-ZSH_THEME="powerlevel9k/powerlevel9k"
+## and now install powerlevel10k
+# sudo pacman -S zsh-theme-powerlevel10k
+or a better solution:
+# yay -S --noconfirm zsh-theme-powerlevel10k-git
+# echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
