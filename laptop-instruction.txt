@@ -1,0 +1,122 @@
+## Pure arch linux installation guide for my pc 
+
+
+  # Connecting to the network (connecting to my wifi):
+# iwctl
+# [iwd]# device list
+# [iwd]# station device scan
+# [iwd]# station device get-networks
+# [iwd]# station device connect SSID
+
+# ping -c 4 google.com
+# timedatectl set-ntp true
+# timedatectl status
+# lsblk
+# cfdisk /dev/nvme0n1 (manage disk partitions)
+# mkfs.ext4 /dev/nvme0n1pn (n = 1,2,3...)
+# mount /dev/nvme0n1pn /mnt
+# mkdir /mnt/boot
+# mount /dev/nvme0n1p1 /mnt/boot
+# pacstrap /mnt base linux linux-firmware nano
+# genfstab -U /mnt >> /mnt/etc/fstab
+# arch-chroot /mnt
+
+  # Creating a swapfile
+# dd if=/dev/zero of=/swapfile bs=1M count=2048 status=progress
+# chmod 600 /swapfile
+# mkswap /swapfile
+# swapon /swapfile
+# nano /etc/fstab
+  /*
+  
+  ***
+  (at the bottom of the file write)
+  # swapfile
+  /swapfile none swap defaults 0 0
+  
+  */
+
+# ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
+# hwclock --systohc
+
+# nano /etc/locale.gen
+    (uncomment en_US.UTF-8 UTF8)
+
+# locale-gen
+
+# nano /etc/locale.conf
+LANG=en_US.UTF-8
+
+# nano /etc/hostname
+myhostname  (rise was what I used)
+
+# nano /etc/hosts
+127.0.0.1 localhost
+::1          localhost
+127.0.1.1 myhostname.localdomain myhostname
+
+# passwd
+# useradd -m newusername (I used rise)
+# passwd yourusername
+# usermod -aG wheel,audio,video,optical,storage yourusername
+# pacman -S sudo vim
+# visudo (uncomment %wheel All=(All) All
+                    :wq)
+# pacman -S ntfs-3g grub efibootmgr networkmanager os-prober mtools dosfstools base-devel linux-headers
+# grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+# grub-mkconfig -o /boot/grub/grub.cfg
+# pacman -S xorg
+# exit
+# reboot
+
+
+
+  ## Next session
+
+# login
+# sudo systemctl enable networkmanager
+# sudo systemctl start networkmanager
+# nmtui (to connect to wifi)
+# pacman -Syu   (or ping google.com to test the internet connection)
+# sudo pacman -S plasma-meta sddm konsole dolphin firefox ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent htop
+# mkdir /etc/sddm.conf.d
+# cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/
+# nano /etc/sddm.conf.d/default.conf
+
+/*
+   SDDM
+   In the file /etc/sddm.conf, under the [General] section, set Numlock value to on :
+
+   [General]
+   ...
+   Numlock=on
+*/
+
+# sudo systemctl enable sddm.service
+# sudo nano /etc/pacman.conf (uncomment #multilib and its dependencies)
+# sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
+# sudo pacman -S git wget
+# mkdir Download
+# cd Download
+# git clone https://aur.archlinux.org/yay.git 
+# cd yay
+# sudo pacman -S base-devel
+# makepkg -si
+# reboot
+
+  # ZSH install guide (for more info take a look at this article https://github.com/romkatv/powerlevel10k#manual)
+
+# sudo pacman -S zsh
+# sh -c "$(wget -O- https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# chsh -l
+# chsh -s /bin/zsh
+# change to zsh in konsole
+
+  # Installing necessary fonts
+# sudo pacman -S ttf-nerd-fonts-symbols
+
+  # and now install powerlevel10k
+# sudo pacman -S zsh-theme-powerlevel10k
+  or a better solution:
+# yay -S --noconfirm zsh-theme-powerlevel10k-git
+# echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
