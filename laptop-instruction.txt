@@ -120,3 +120,7 @@ myhostname  (rise was what I used)
   or a better solution:
 # yay -S --noconfirm zsh-theme-powerlevel10k-git
 # echo 'source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme' >>! ~/.zshrc
+
+
+# Failed to start Load/Save Screen Backlight Brightness
+# systemctl mask systemd-backlight@backlight:acpi_video0 systemd-backlight@backlight:acpi_video1
