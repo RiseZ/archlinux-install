@@ -80,8 +80,8 @@ myhostname  (rise was what I used)
 # nmtui (to connect to wifi)
 # pacman -Syu   (or ping google.com to test the internet connection)
 # sudo pacman -S plasma-meta sddm konsole dolphin firefox ark kinfocenter gwenview kipi-plugins spectacle okular vlc ktorrent htop
-# mkdir /etc/sddm.conf.d
-# cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/
+# sudo mkdir /etc/sddm.conf.d
+# sudo cp /usr/lib/sddm/sddm.conf.d/default.conf /etc/sddm.conf.d/
 # nano /etc/sddm.conf.d/default.conf
 
 /*
