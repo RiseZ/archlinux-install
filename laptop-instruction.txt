@@ -19,6 +19,7 @@
 # mount /dev/nvme0n1p1 /mnt/boot
 # pacstrap /mnt base linux linux-firmware nano
 # genfstab -U /mnt >> /mnt/etc/fstab
+# cat /mnt/etc/fstab
 # arch-chroot /mnt
 
   # Creating a swapfile
@@ -94,6 +95,7 @@ myhostname  (rise was what I used)
 
 # sudo systemctl enable sddm.service
 # sudo nano /etc/pacman.conf (uncomment #multilib and its dependencies)
+# sudo pacman -Syu
 # sudo pacman -S nvidia nvidia-utils lib32-nvidia-utils nvidia-settings
 # sudo pacman -S git wget
 # mkdir Download
