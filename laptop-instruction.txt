@@ -102,7 +102,6 @@ myhostname  (rise was what I used)
 # cd Download
 # git clone https://aur.archlinux.org/yay.git 
 # cd yay
-# sudo pacman -S base-devel
 # makepkg -si
 # reboot
 
