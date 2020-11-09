@@ -68,6 +68,7 @@ myhostname  (rise was what I used)
 # grub-mkconfig -o /boot/grub/grub.cfg
 # pacman -S xorg
 # exit
+# umount -a
 # reboot
 
 
